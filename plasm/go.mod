@@ -1,4 +1,4 @@
-module matrix
+module plasm
 
 go 1.21.1
 

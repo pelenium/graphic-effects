@@ -13,7 +13,7 @@ const (
 )
 
 func main() {
-	rl.InitWindow(width, height, "matrix")
+	rl.InitWindow(width, height, "plasm")
 
 	v := float64(0)
 
