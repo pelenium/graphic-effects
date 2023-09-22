@@ -38,8 +38,6 @@ func main() {
 			}
 		}
 
-		rl.DrawFPS(300, 100)
-
 		rl.EndDrawing()
 
 		v += 0.3
