@@ -1,4 +1,4 @@
-module plasm
+module graphic-effects
 
 go 1.21.1
 
