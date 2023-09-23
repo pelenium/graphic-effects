@@ -17,7 +17,7 @@ var (
 )
 
 func main() {
-	rl.InitWindow(width, height, "tunnel")
+	rl.InitWindow(width, height, "spiral")
 
 	rl.SetTargetFPS(60)
 
