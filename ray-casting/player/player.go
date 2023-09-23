@@ -30,23 +30,31 @@ func Init(x, y, angle float32) *Player {
 	return &p
 }
 
-func (p *Player) Update() {
-	p.move()
-	p.draw()
+func (p *Player) Update(gameMap []string) {
+	p.move(gameMap)
+	p.draw(gameMap)
 }
 
-func (p *Player) move() {
+func (p *Player) move(gameMap []string) {
 	if rl.IsKeyDown(rl.KeyA) {
-		p.Position.X -= 5
+		if string(gameMap[int(p.Position.Y) / 20][int(p.Position.X - 2.5) / 20]) != "#" {
+			p.Position.X -= 2.5
+		}
 	}
 	if rl.IsKeyDown(rl.KeyD) {
-		p.Position.X += 5
+		if string(gameMap[int(p.Position.Y) / 20][int(p.Position.X + 2.5) / 20]) != "#" {
+			p.Position.X += 2.5
+		}
 	}
 	if rl.IsKeyDown(rl.KeyW) {
-		p.Position.Y -= 5
+		if string(gameMap[int(p.Position.Y - 2.5) / 20][int(p.Position.X) / 20]) != "#" {
+			p.Position.Y -= 2.5
+		}
 	}
 	if rl.IsKeyDown(rl.KeyS) {
-		p.Position.Y += 5
+		if string(gameMap[int(p.Position.Y + 2.5) / 20][int(p.Position.X) / 20]) != "#" {
+			p.Position.Y += 2.5
+		}
 	}
 	if rl.IsKeyDown(rl.KeyLeft) {
 		p.Angle -= 0.0625
@@ -56,15 +64,19 @@ func (p *Player) move() {
 	}
 }
 
-func (p *Player) draw() {
+func (p *Player) draw(gameMap []string) {
 	angle := p.Angle / 2
 	for i := 0; i < len(p.rays); i++ {
-		x := float64(p.Position.X) + 500*math.Cos(float64(angle))
-		y := float64(p.Position.Y) + 500*math.Sin(float64(angle))
+		for c := float64(0); c < 800; c += 1 {
+			x := float64(p.Position.X) + c*math.Cos(float64(angle))
+			y := float64(p.Position.Y) + c*math.Sin(float64(angle))
 
-		rl.DrawLine(int32(p.Position.X), int32(p.Position.Y), int32(x), int32(y), color.RGBA{255, 255, 255, 255})
+			if string(gameMap[int(y) / 20][int(x) / 20]) == "#" {
+				rl.DrawLine(int32(p.Position.X), int32(p.Position.Y), int32(x), int32(y), color.RGBA{255, 255, 255, 255})
+				break
+			}
+		}
+
 		angle += 0.0625
 	}
-
-	rl.DrawCircle(int32(p.Position.X), int32(p.Position.Y), 10, color.RGBA{255, 255, 255, 255})
 }
