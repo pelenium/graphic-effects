@@ -70,13 +70,13 @@ func main() {
 
 		p.Update(gameMap)
 
-		// for yIndx, i := range gameMap {
-		// 	for xIndx, c := range i {
-		// 		if string(c) == "#" {
-		// 			rl.DrawRectangle(int32(xIndx)*20, int32(yIndx)*20, 20, 20, color.RGBA{255, 0, 0, 255})
-		// 		}
-		// 	}
-		// }
+		for yIndx, i := range gameMap {
+			for xIndx, c := range i {
+				if string(c) == "#" {
+					rl.DrawRectangle(int32(xIndx)*20, int32(yIndx)*20, 20, 20, color.RGBA{255, 0, 0, 255})
+				}
+			}
+		}
 
 		rl.EndDrawing()
 	}

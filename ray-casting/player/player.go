@@ -66,14 +66,15 @@ func (p *Player) move(gameMap []string) {
 
 func (p *Player) draw(gameMap []string) {
 	angle := p.Angle / 2
-	var n uint8
 	for i := 0; i < len(p.rays); i++ {
 		for c := float64(0); c < 800; c += 1 {
 			x := float64(p.Position.X) + c*math.Cos(float64(angle))
 			y := float64(p.Position.Y) + c*math.Sin(float64(angle))
 
 			if string(gameMap[int(y)/20][int(x)/20]) == "#" {
-				length := int(math.Sqrt(math.Pow(float64(p.Position.X)-x, 2) + math.Pow(float64(p.Position.Y)-y, 2)))
+				// ray drawing
+				rl.DrawLine(int32(p.Position.X), int32(p.Position.Y), int32(x), int32(y), color.RGBA{255, 255, 255, 255})
+				// length := int32(math.Sqrt(math.Pow(float64(p.Position.X)-x, 2) + math.Pow(float64(p.Position.Y)-y, 2)))
 
 				/* TODO:
 				1. Create a formula that counts height
@@ -81,10 +82,10 @@ func (p *Player) draw(gameMap []string) {
 				3. Draw needed rectangle
 				*/
 
-				var height int32
-				var contrastRatio uint8
+				// var height int32
+				// var contrastRatio uint8
 
-				rl.DrawRectangle(int32(i*32), 0, 32, height, color.RGBA{contrastRatio, contrastRatio, contrastRatio, 255})
+				// rl.DrawRectangle(int32(i*32), 0, 32, height, color.RGBA{contrastRatio, contrastRatio, contrastRatio, 255})
 				break
 			}
 		}
