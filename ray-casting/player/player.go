@@ -73,7 +73,7 @@ func (p *Player) draw(gameMap []string) {
 
 			if string(gameMap[int(y)/20][int(x)/20]) == "#" {
 				// ray drawing
-				rl.DrawLine(int32(p.Position.X), int32(p.Position.Y), int32(x), int32(y), color.RGBA{255, 255, 255, 255})
+				// rl.DrawLine(int32(p.Position.X), int32(p.Position.Y), int32(x), int32(y), color.RGBA{255, 255, 255, 255})
 				length := int32(math.Sqrt(math.Pow(float64(p.Position.X)-x, 2) + math.Pow(float64(p.Position.Y)-y, 2)) /* * math.Cos(float64(angle))*/)
 
 				var height int32

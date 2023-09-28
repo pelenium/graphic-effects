@@ -3,3 +3,6 @@ spiralBuild: ./spiral
 
 plasmBuild: ./plasm
 	go build -C plasm -o plasm.exe -ldflags '-extldflags "-static" -H=windowsgui'
+
+ray-castingBuild: ./ray-casting
+	go build -C ray-casting -o ray-casting.exe -ldflags '-extldflags "-static" -H=windowsgui'
