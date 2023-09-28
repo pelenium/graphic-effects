@@ -19,7 +19,7 @@ func Init(x, y, angle float32) *Player {
 		Angle:    angle,
 	}
 
-	rays := [25]ray{}
+	rays := [100]ray{}
 
 	for i := range rays {
 		rays[i] = ray{rl.Vector2{X: x + 500, Y: y}}
@@ -57,10 +57,10 @@ func (p *Player) move(gameMap []string) {
 		}
 	}
 	if rl.IsKeyDown(rl.KeyLeft) {
-		p.Angle -= 0.0625
+		p.Angle -= 0.015625
 	}
 	if rl.IsKeyDown(rl.KeyRight) {
-		p.Angle += 0.0625
+		p.Angle += 0.015625
 	}
 }
 
@@ -74,21 +74,28 @@ func (p *Player) draw(gameMap []string) {
 			if string(gameMap[int(y)/20][int(x)/20]) == "#" {
 				// ray drawing
 				rl.DrawLine(int32(p.Position.X), int32(p.Position.Y), int32(x), int32(y), color.RGBA{255, 255, 255, 255})
-				// length := int32(math.Sqrt(math.Pow(float64(p.Position.X)-x, 2) + math.Pow(float64(p.Position.Y)-y, 2)))
+				length := int32(math.Sqrt(math.Pow(float64(p.Position.X)-x, 2) + math.Pow(float64(p.Position.Y)-y, 2)) /* * math.Cos(float64(angle))*/)
 
-				/* TODO:
-				1. Create a formula that counts height
-				2. Create a formula that counts contrast ratio
-				3. Draw needed rectangle
-				*/
+				var height int32
+				if length <= 50 {
+					height = 800
+				} else if length >= 200 {
+					height = 0
+				} else {
+					height = 5 * length
+				}
+				height = max(min(800-length, 800), 0)
+				var contrastRatio uint8 = max(min(uint8(255-0.32*float32(length)), 255), 0)
 
-				// var height int32
-				// var contrastRatio uint8
+				rl.DrawRectangle(int32(i*8), (800-height)/2, 8, height, color.RGBA{contrastRatio, contrastRatio, contrastRatio, 255})
 
-				// rl.DrawRectangle(int32(i*32), 0, 32, height, color.RGBA{contrastRatio, contrastRatio, contrastRatio, 255})
 				break
 			}
 		}
-		angle += 0.0625
+		angle += 0.015625
 	}
+}
+
+func ToRadians(angle float64) float64 {
+	return angle * (math.Pi / 180.0)
 }

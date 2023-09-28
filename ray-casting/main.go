@@ -67,16 +67,18 @@ func main() {
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
 		rl.ClearBackground(color.RGBA{0, 0, 0, 255})
+		rl.DrawRectangle(0, 0, 800, 400, color.RGBA{0, 0, 255, 255})
+		rl.DrawRectangle(0, 400, 800, 400, color.RGBA{0, 255, 0, 255})
 
 		p.Update(gameMap)
 
-		for yIndx, i := range gameMap {
-			for xIndx, c := range i {
-				if string(c) == "#" {
-					rl.DrawRectangle(int32(xIndx)*20, int32(yIndx)*20, 20, 20, color.RGBA{255, 0, 0, 255})
-				}
-			}
-		}
+		// for yIndx, i := range gameMap {
+		// 	for xIndx, c := range i {
+		// 		if string(c) == "#" {
+		// 			rl.DrawRectangle(int32(xIndx)*20, int32(yIndx)*20, 20, 20, color.RGBA{255, 0, 0, 255})
+		// 		}
+		// 	}
+		// }
 
 		rl.EndDrawing()
 	}
