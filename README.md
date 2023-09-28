@@ -6,7 +6,7 @@
 
 - <a href="https://github.com/pelenium/graphic-effects/tree/main/plasm">Plasm</a>
 - <a href="https://github.com/pelenium/graphic-effects/tree/main/spiral">Spiral</a>
+- <a href="https://github.com/pelenium/graphic-effects/tree/main/ray-casting">Ray casting</a>
 
 ## In process:
-
 - <a href="https://github.com/pelenium/graphic-effects/tree/main/ray-casting">Ray casting</a>
