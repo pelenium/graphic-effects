@@ -1,4 +1,4 @@
-# spiral
+# ray-casting
 
 <img src="./../img/ray-casting.gif">
 
