@@ -3,6 +3,7 @@ package main
 import (
 	"image/color"
 	"math"
+	"math/rand"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
@@ -34,8 +35,10 @@ func main() {
 		circles[i] = c
 	}
 
-	nx := int32(100)
-	ny := int32(100)
+	p := 0.01
+
+	nx := int32(400)
+	ny := int32(400)
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
 		rl.ClearBackground(color.RGBA{0, 0, 0, 255})
@@ -59,6 +62,10 @@ func main() {
 		if val > 360 {
 			val = 0
 		}
+
+		nx += int32(float32(math.Sin(p+math.Cos(rand.Float64())*2.62)*3.06-math.Sin(p*0.96)*3.65)/1.301 + rand.Float32() - 0.5)
+		ny += int32(float32(math.Cos(p+math.Sin(rand.Float64())*1.34)*5.32-math.Cos(p*1.27)*4.21) / 1.23)
+		p += 0.01
 
 		rl.EndDrawing()
 	}
